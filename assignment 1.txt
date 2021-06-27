@@ -1,0 +1,116 @@
+1.Given a string S, remove consecutive duplicates from it recursively.(do recursively)
+  code:
+#include <bits/stdc++.h>
+using namespace std;
+void removeDuplicates(char* S)
+{
+    if (S[0] == '\0')
+        return;
+    if (S[0] == S[1]) {
+        int i = 0;
+        while (S[i] != '\0') {
+            S[i] = S[i + 1];
+            i++;
+       }
+        removeDuplicates(S);
+    }
+     removeDuplicates(S + 1);
+}
+int main()
+{
+    char S1[] = "aabbccddeggs";
+    removeDuplicates(S1);
+    cout << S1 << endl;
+ 
+    char S2[] = "aabcca";
+    removeDuplicates(S2);
+    cout << S2 << endl;
+ 
+    return 0;
+}
+
+2.Given an array arr of N integers. Find the contiguous sub-array with maximum sum.
+
+  code:
+#include<iostream>
+#include<climits>
+using namespace std;
+ 
+int maxSubArraySum(int arr[], int size)
+{
+    int max_so_far = INT_MIN, max_ending_here = 0;
+ 
+    for (int i = 0; i < size; i++)
+    {
+        max_ending_here = max_ending_here + arr[i];
+        if (max_so_far < max_ending_here)
+            max_so_far = max_ending_here;
+        if (max_ending_here < 0)
+            max_ending_here = 0;
+    }
+    return max_so_far;
+}
+
+int main()
+{
+    int arr[] = {1,2,3,-2,5};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int max_sum = maxSubArraySum(arr, n);
+    cout << "Maximum contiguous sum is " << max_sum;
+    return 0;
+}
+
+3.Given a sorted array A of size N, delete all the duplicates elements from A
+ code:
+#include<iostream>
+using namespace std;
+int removeDuplicates(int arr[], int n)
+{
+    if (n==0 || n==1)
+        return n;
+    int temp[n];
+    int j = 0;
+    for (int i=0; i<n-1; i++)
+        if (arr[i] != arr[i+1])
+            temp[j++] = arr[i];
+    temp[j++] = arr[n-1];
+    for (int i=0; i<j; i++)
+        arr[i] = temp[i];
+    return j;
+}
+int main()
+{
+    int arr[] = {2,2,2,2,2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    n = removeDuplicates(arr, n);
+    for (int i=0; i<n; i++)
+       cout << arr[i] << " ";
+ 
+    return 0;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
